@@ -29,16 +29,14 @@ int main() {
 
     ifstream fin("lightson.in");
     fin >> N >> M;
-
+    
     int *light_on[N];
     bool can_has_visited[N][N];
-
-    pair_vec_t coors[N][N];
-    pair_vec_t frontier; // lawls screw memory, speed ftw!
-                         // basically holds all the cells that has been visited
-                         // + cells that are on the frontier right now, is there
-                         // to keep the frontier unique and short
-
+    // lawls screw memory, speed ftw!
+    // basically holds all the cells that has been visited
+    // + cells that are on the frontier right now, is there
+    // to keep the frontier unique and short
+    
     for (x = 0 ; x < N ; x++) {
         light_on[x] = (int *)(malloc(N * sizeof(int)));
         for (y = 0 ; y < N ; y++) {
@@ -46,6 +44,9 @@ int main() {
             can_has_visited[x][y] = false;
         }
     }
+    
+    pair_vec_t coors[N][N];
+    pair_vec_t frontier;
 
     for (; M > 0 ; M--) {
         fin >> x >> y >> x2 >> y2;
