@@ -19,7 +19,7 @@ int main() {
 
     for (c = 0 ; c < N ; c++) {
         fin >> card;
-        cards[card] = 1;
+        cards[card - 1] = 1;
     }
 
     int wins = 0;
@@ -36,7 +36,7 @@ int main() {
         if (my_count && cards[c]) { // my_count > 0 but current card is not 0
             if (other_count >= my_count) {
                 wins += my_count;
-                carryover = other_count - my_count;
+                carryover += other_count - my_count;
             }
             else {
                 wins += other_count;
@@ -67,18 +67,7 @@ int main() {
     }
 
     if (my_count) {
-        if (other_count >= my_count) {
-            wins += my_count;
-        }
-        else {
-            wins += other_count;
-            if (carryover > (my_count - other_count)) {
-                wins += (my_count - other_count);
-            }
-            else {
-                wins += carryover;
-            }
-        }
+        wins += my_count;
     }
 
     ofstream fout("highcard.out");
